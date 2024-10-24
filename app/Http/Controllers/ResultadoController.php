@@ -30,7 +30,7 @@ class ResultadoController extends Controller
      */
     public function store(StoreResultadoRequest $request)
     {
-        dd($request);
+        //dd($request);
         $partida_id = $request->partida_id;
         $resultado = new Resultado();
 

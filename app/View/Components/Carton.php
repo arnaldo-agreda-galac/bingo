@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class carton extends Component
+class Carton extends Component
 {
     public $numeros;
     public $identificador;
@@ -21,6 +21,7 @@ class carton extends Component
     }
 
     protected function getNumeros(ModelsCarton $carton){
+
         return [
             'b0' => $carton->b0,
             'b1' => $carton->b1,

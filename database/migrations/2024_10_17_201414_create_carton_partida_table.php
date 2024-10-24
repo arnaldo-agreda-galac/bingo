@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('carton_partida', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('carton_id');
+            $table->unsignedBigInteger('jugador_id')->nullable();
             $table->unsignedBigInteger('partida_id');
             $table->unsignedBigInteger('jugador_id')->nullable();
             $table->boolean('pagado')->default(false);
+            $table->boolean('ganador')->default(false);
             $table->timestamps();
 
             $table->foreign('partida_id')->references('id')->on('partidas');
