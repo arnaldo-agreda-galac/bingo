@@ -91,7 +91,7 @@
             </div>
         </div>
         <div class="h-full ml-14 mb-10 md:ml-64">
-            <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+            <div class="p-4">
                 {{ $slot }}
             </div>
         </div>

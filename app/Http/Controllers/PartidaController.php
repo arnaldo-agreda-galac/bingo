@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Partida;
 use App\Http\Requests\StorePartidaRequest;
 use App\Http\Requests\UpdatePartidaRequest;
+use Illuminate\Support\Facades\Date;
 
 class PartidaController extends Controller
 {
@@ -40,6 +41,8 @@ class PartidaController extends Controller
     {
         $partida = Partida::find($id);
         $this->results = $partida->resultados;
+        $fecha = date_create($partida->fecha);
+        $partida->fecha = $fecha->format('d-m-Y H:i');
         $cartones = $partida->cartones;
         $numeros = [];
 
