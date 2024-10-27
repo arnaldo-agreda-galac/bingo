@@ -50,25 +50,26 @@
             @endfor
         </section>
     </div>
+    <div class="w-4/12">
+        <div class="flex flex-col items-center relative w-80 h-auto rounded-2xl overflow-hidden shadow-lg bg-white border border-solid border-gray-300">
+            <section class="flex relative w-full h-1/5 overflow-hidden px-2 pt-2 justify-between">
+                <x-char-header-item>B</x-char-header-item>
+                <x-char-header-item>I</x-char-header-item>
+                <x-char-header-item>N</x-char-header-item>
+                <x-char-header-item>G</x-char-header-item>
+                <x-char-header-item>O</x-char-header-item>
+            </section>
+            <hr class="h-1 w-full mt-1 border-solid border-gray-200">
 
-    <div class="flex flex-col items-center relative w-80 h-auto rounded-2xl overflow-hidden shadow-lg bg-white border border-solid border-gray-300">
-        <section class="flex relative w-full h-1/5 overflow-hidden px-2 pt-2 justify-between">
-            <x-char-header-item>B</x-char-header-item>
-            <x-char-header-item>I</x-char-header-item>
-            <x-char-header-item>N</x-char-header-item>
-            <x-char-header-item>G</x-char-header-item>
-            <x-char-header-item>O</x-char-header-item>
-        </section>
-        <hr class="h-1 w-full mt-1 border-solid border-gray-200">
-
-        @foreach ($numeros as $fila)
-        <section class="flex relative w-full px-2 justify-between mb-1">
-            @foreach ($fila as $clave => $valor)
-            <x-numero :number="$clave" :marcar="$valor" onclick="setBall({{$clave}},{{($valor?1:0)}});" />
+            @foreach ($numeros as $fila)
+            <section class="flex relative w-full px-2 justify-between mb-1">
+                @foreach ($fila as $clave => $valor)
+                <x-numero :number="$clave" :marcar="$valor" onclick="setBall({{$clave}},{{($valor?1:0)}});" />
+                @endforeach
+            </section>
             @endforeach
-        </section>
-        @endforeach
 
+        </div>
     </div>
     <form id="set_resultados" method="post" action="{{route('resultados.set')}}">
         @csrf
@@ -76,22 +77,30 @@
         <input type="hidden" name="numero" id="numero" />
         <input type="hidden" name="accion" id="accion" />
     </form>
-    <button>Abrir</button>
-    <div id="modal-container" class="fixed inset-0 z-20">
+    <button id="open-modal" type="button">Abrir</button>
+    <div id="modal-component-container" class="hidden fixed inset-0 z-20">
         <div class="modal-flex-container flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div class="modal-bg-container fixed inset-0 bg-gray-700 bg-opacity-75">
-            </div>
-            <div class="modal-space-container"></div>
-            <div class="modal-container inline-block align-bottom bg-white rounded-md text-left overflow-hidden shadow-xl transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
-                <div class="modal-wrapper bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb:4">
-                    <div class="modal-wrapper-flex sm:flex sm:items-start">
-                        <div class="modal-icon mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"></div>
-                        <div class="modal-content text-center mt-3 sm:mt-0 sm:ml-4 sm:text-left"></div>
+
+                <div class="modal-space-container hidden sm:inline-block sm:align-middle sm:h-screen">&nbsp;</div>
+                <div id="modal-container" class="modal-container inline-block align-bottom bg-white rounded-md text-left overflow-hidden shadow-xl transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
+                    <div class="modal-wrapper bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb:4">
+                        <div class="modal-wrapper-flex sm:flex sm:items-start">
+                            <div class="modal-icon mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10 text-red-600 font-medium">
+                                <i class="fa fa-warning"></i>
+                            </div>
+                            <div class="modal-content text-center mt-3 sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-lg font-medium text-gray-900">Eliminar Elemento</h3>
+                                <div class="modal-text mt-2">
+                                    <p class="text-gray-500 text-sm">Seguro que quiere eliminar este elemento?</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-actions">
-                    <button>Cancelar</button>
-                    <button>Enviar</button>
+                    <div class="modal-actions bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button class="w-full inline-flex justify-center rounded-md border border-transparent shadow-md px-4 py-2 bg-red-700 font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-200 sm:mt-0 sm:ml-3 sm:w-auto sm-text-sm">Enviar</button>
+                        <button class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-md px-4 py-2 bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-200 sm:mt-0 sm:ml-3 sm:w-auto sm-text-sm" id="close-modal">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>

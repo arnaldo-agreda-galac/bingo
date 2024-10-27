@@ -96,5 +96,38 @@
             </div>
         </div>
     </div>
+    <script>
+        const closeButton = document.querySelector("#close-modal");
+        const openButton = document.querySelector("#open-modal");
+        const modalContainer = document.querySelector("#modal-component-container");
+        const modal = document.querySelector("#modal-container");
+
+        closeButton.addEventListener("click", () => {
+            closeModal();
+        });
+        openButton.addEventListener("click", () => {
+            openModal();
+        });
+
+        function closeModal() {
+            console.log("entro");
+            showAndHide(modalContainer, ["bg-fadeOut"], ["bg-fadeIn"]);
+            showAndHide(modal, ["modal-scaleOut"], ["modal-scaleIn"]);
+            setTimeout(() => {
+                showAndHide(modalContainer, ["hidden"], ["block"]);
+            }, 300);
+        }
+
+        function openModal() {
+            showAndHide(modalContainer, ["block","bg-fadeIn"], ["hidden","bg-fadeOut"]);
+            showAndHide(modal, ["modal-scaleIn"], ["modal-scaleOut"]);
+        }
+
+        function showAndHide(element, classesToAdd, classesToRemove) {
+            element.classList.remove(...classesToRemove);
+            element.classList.add(...classesToAdd);
+        }
+
+    </script>
 </body>
 </html>

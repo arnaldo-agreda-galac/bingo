@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 50);
             $table->dateTime('fecha');
-            $table->decimal('costo_carton');
+            $table->decimal('costo_carton')->default(0);
             $table->enum('estado',['esperando', 'iniciada','terminada']);
             $table->timestamps();
         });
