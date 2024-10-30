@@ -1,4 +1,4 @@
-<x-layout4>
+<x-layout-base>
     <div class="mb-2">
         <div class="lg:flex lg:items-center lg:justify-between">
             <div class="min-w-0 flex-1">
@@ -39,36 +39,39 @@
           </div>
         <hr class="border border-solid border-gray-100 w-full">
     </div>
-    <div class="flex flex-col items-center relative w-full md:w-8/12 h-auto rounded-2xl overflow-hidden shadow-lg bg-white border border-solid border-gray-300 pb-2">
-        <section class="flex relative w-full h-1/5 overflow-hidden px-2 pt-2 justify-between">
-        @for ($i=1 ; $i<=100 ; $i++)
-            <x-carton-accion :numero="$i" />
-            @if ($i % 10 == 0 && $i != 100)
-                </section>
-                <section class="flex relative w-full h-1/5 overflow-hidden px-2 pt-2 justify-between">
-            @endif
-            @endfor
-        </section>
-    </div>
-    <div class="w-4/12">
-        <div class="flex flex-col items-center relative w-80 h-auto rounded-2xl overflow-hidden shadow-lg bg-white border border-solid border-gray-300">
+    <div class="flex justify-between items-start flex-wrap">
+
+        <div class="flex flex-col items-center relative w-full md:w-7/12 h-auto rounded-2xl overflow-hidden shadow-lg bg-white border border-solid border-gray-300 pb-2">
             <section class="flex relative w-full h-1/5 overflow-hidden px-2 pt-2 justify-between">
-                <x-char-header-item>B</x-char-header-item>
-                <x-char-header-item>I</x-char-header-item>
-                <x-char-header-item>N</x-char-header-item>
-                <x-char-header-item>G</x-char-header-item>
-                <x-char-header-item>O</x-char-header-item>
+            @for ($i=1 ; $i<=100 ; $i++)
+                <x-carton-accion :numero="$i" />
+                @if ($i % 10 == 0 && $i != 100)
+                    </section>
+                    <section class="flex relative w-full h-1/5 overflow-hidden px-2 pt-2 justify-between">
+                @endif
+                @endfor
             </section>
-            <hr class="h-1 w-full mt-1 border-solid border-gray-200">
+        </div>
+        <div class="w-4/12 ml-3">
+            <div class="flex flex-col items-center relative w-80 h-auto rounded-2xl overflow-hidden shadow-lg bg-white border border-solid border-gray-300">
+                <section class="flex relative w-full h-1/5 overflow-hidden px-2 pt-2 justify-between">
+                    <x-char-header-item>B</x-char-header-item>
+                    <x-char-header-item>I</x-char-header-item>
+                    <x-char-header-item>N</x-char-header-item>
+                    <x-char-header-item>G</x-char-header-item>
+                    <x-char-header-item>O</x-char-header-item>
+                </section>
+                <hr class="h-1 w-full mt-1 border-solid border-gray-200">
 
-            @foreach ($numeros as $fila)
-            <section class="flex relative w-full px-2 justify-between mb-1">
-                @foreach ($fila as $clave => $valor)
-                <x-numero :number="$clave" :marcar="$valor" onclick="setBall({{$clave}},{{($valor?1:0)}});" />
+                @foreach ($numeros as $fila)
+                <section class="flex relative w-full px-2 justify-between mb-1">
+                    @foreach ($fila as $clave => $valor)
+                    <x-numero :number="$clave" :marcar="$valor" onclick="setBall({{$clave}},{{($valor?1:0)}});" />
+                    @endforeach
+                </section>
                 @endforeach
-            </section>
-            @endforeach
 
+            </div>
         </div>
     </div>
     <form id="set_resultados" method="post" action="{{route('resultados.set')}}">
@@ -113,5 +116,4 @@
             formulario.submit();
         }
     </script>
-</x-layout4>
-{{-- https://www.youtube.com/watch?v=Y7y2DIeKqlI --}}
+</x-layout-base>

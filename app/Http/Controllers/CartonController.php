@@ -13,7 +13,8 @@ class CartonController extends Controller
      */
     public function index()
     {
-        //
+        $cartones = Carton::all();
+        return view('cartones.index', ['cartones'=>$cartones]);
     }
 
     /**

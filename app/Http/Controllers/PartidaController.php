@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Partida;
 use App\Http\Requests\StorePartidaRequest;
 use App\Http\Requests\UpdatePartidaRequest;
-use Illuminate\Support\Facades\Date;
 
 class PartidaController extends Controller
 {
@@ -15,7 +14,8 @@ class PartidaController extends Controller
      */
     public function index()
     {
-        //
+        $partidas = Partida::all();
+        return view('partidas.index', ['partidas'=>$partidas]);
     }
 
     /**

@@ -10,16 +10,16 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::controller(CartonController::class)->group(function (){
-    Route::get('/cartones', 'index');
-    Route::get('/cartones/{id}', 'show');
-    Route::post('/cartones', 'store');
+Route::controller(CartonController::class)->prefix('cartones')->group(function (){
+    Route::get('/', 'index')->name('cartones.index');
+    Route::get('/{id}', 'show')->name('cartones.detail');
+    Route::post('/cartones/store', 'store')->name('cartones.store');
 });
 
 Route::controller(PartidaController::class)->prefix('partidas')->group(function (){
-    Route::get('/', 'index');
-    Route::get('/{id}', 'show');
-    Route::post('/', 'store');
+    Route::get('/', 'index')->name('partidas.index');
+    Route::get('/{id}', 'show')->name('partidas.detail');
+    Route::post('/', 'store')->name('partidas.store');;
 });
 
 Route::controller(ResultadoController::class)->prefix('resultados')->group(function (){
