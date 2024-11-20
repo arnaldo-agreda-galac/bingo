@@ -13,8 +13,13 @@ class CartonController extends Controller
      */
     public function index()
     {
-        $cartones = Carton::all();
-        return view('cartones.index', ['cartones'=>$cartones]);
+        $cartones = Carton::all()->take(10)->toArray();
+        $columnas = [
+            'numero' => 'Cartón',
+            'created_at' => 'Creación',
+            'updated_at' => 'Actualización',
+        ];
+        return view('cartones.index', ['cartones'=>$cartones,'columnas'=>$columnas]);
     }
 
     /**

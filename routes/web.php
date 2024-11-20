@@ -13,6 +13,8 @@ Route::get('/', function () {
 Route::controller(CartonController::class)->prefix('cartones')->group(function (){
     Route::get('/', 'index')->name('cartones.index');
     Route::get('/{id}', 'show')->name('cartones.detail');
+    Route::get('/{id}/edit', 'edit')->name('cartones.edit');
+    Route::get('/{id}/delete', 'destroy')->name('cartones.delete');
     Route::post('/cartones/store', 'store')->name('cartones.store');
 });
 

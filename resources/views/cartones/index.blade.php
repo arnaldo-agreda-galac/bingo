@@ -1,6 +1,7 @@
 <x-layout-base>
-    <x-module-header :acciones="['Editar','Crear','Buscar']">Cartones</x-module-header>
-    <div class="flex flex-col w-full p-2 border border-solid border-gray-100">
+    <x-module-header :acciones="['Crear','Buscar']">Cartones</x-module-header>
+    <x-data-table modulo="cartones" :datos="$cartones" :columnas="$columnas" :acciones="['ver','editar','eliminar']"></x-data-table>
+    {{-- <div class="flex flex-col w-full p-3 border border-solid border-gray-100 rounded-md">
         <ul role="list" class="divide-y divide-gray-100">
             <li class="flex justify-between gap-x-6 py-5">
               <div class="flex min-w-0 gap-x-4">
@@ -91,5 +92,5 @@
               </div>
             </li>
           </ul>
-    </div>
+    </div> --}}
 </x-layout-base>
